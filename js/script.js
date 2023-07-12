@@ -3,7 +3,7 @@ const guessedLetters = document.querySelector(".guessed-letters");
 //Guess button
 const guessButton = document.querySelector(".guess");
 //Input where player guesses letter
-const input = document.querySelector(".letter");
+const letterGuess = document.querySelector(".letter");
 //Word in progress appears
 const inProgress = document.querySelector(".word-in-progress");
 //Remaining guesses paragraph display
@@ -20,14 +20,23 @@ let word = "magnolia";
 
 let lettersGuessed = [];
 
-//Display placeholders for letters in game
+//Display symbol placeholders for letters in game
  const placeholder = function (word) {
-    const wordArray = word;
-    const letterPlaceholders = [];
-    wordArray.forEach(function(letter) {
-        letterPlaceholders.push("●");
-    });
-    inProgress.innerText = letterPlaceholders.join("");
- };
- 
+    const letterPlaceholder = [""];
+    for (const letter of word) {
+        console.log(letter);
+        letterPlaceholder.push("●");
+    }
+    inProgress.innerText = letterPlaceholder.join("");
+};
+
  placeholder(word);
+
+ //Letter entered into the input field in the console when the Guess button is clicked. 
+ guessButton.addEventListener("click", function(e) {
+    e.preventDefault();
+    const guess = letterGuess.value;
+    console.log(guess);
+    letterGuess.value = "";
+ });
+
